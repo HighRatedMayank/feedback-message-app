@@ -49,7 +49,7 @@ export async function POST(request: Request){
       );
     }
     } catch (error) {
-        console.error("Error verifying the user");
+        console.error(error);
         Response.json(
             {
                 success: false,

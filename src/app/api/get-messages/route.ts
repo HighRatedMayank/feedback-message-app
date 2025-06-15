@@ -1,11 +1,11 @@
 import dbConnect from '@/lib/dbConnect';
-import {UserModel} from '@/models/User';
+import UserModel from '@/models/User';
 import mongoose from 'mongoose';
 import { User } from 'next-auth';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]/options';
 
-export async function GET(request: Request) {
+export async function GET() {
   await dbConnect();
   const session = await getServerSession(authOptions);
   const user: User = session?.user as User
@@ -40,6 +40,10 @@ export async function GET(request: Request) {
       }
     );
   } catch (error) {
-    
+    console.error('An unexpected error occurred:', error);
+    return Response.json(
+      { message: 'Internal server error', success: false },
+      { status: 500 }
+    );
   }
 }

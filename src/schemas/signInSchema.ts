@@ -1,10 +1,7 @@
-import { z } from "zod/v4";
+import { z } from 'zod'
 
-const signInSchema = z.object({
-    email: z.string()
-    .min(1, { message: "This field has to be filled." })
-    .email("This is not a valid email."),
-    password: z.string()
-})
-
-export default signInSchema
+export const signInSchema = z.object({
+  identifier: z.string(),
+  password: z.string(),
+  email: z.string()
+});

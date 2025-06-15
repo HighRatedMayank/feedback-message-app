@@ -1,5 +1,5 @@
 import dbConnect from "@/lib/dbConnect";
-import { UserModel } from "@/models/User";
+import UserModel from "@/models/User";
 import { Message } from "@/models/User";
 
 export async function POST(request: Request) {
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
             );
         }
 
-        if (!user.isAcceptingMessage) {
+        if (!user.isAcceptingMessages) {
             return Response.json(
                 { message: 'User is not accepting messages', success: false },
                 { status: 403 } // 403 Forbidden status

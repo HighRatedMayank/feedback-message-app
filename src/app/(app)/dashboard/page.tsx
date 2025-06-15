@@ -60,7 +60,7 @@ function UserDashboard() {
         }
       } catch (error) {
         const axiosError = error as AxiosError<ApiResponse>;
-        toast("Error");
+        toast(axiosError.message);
       } finally {
         setIsLoading(false);
         setIsSwitchLoading(false);
@@ -88,7 +88,7 @@ function UserDashboard() {
       toast(response.data.message);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      toast("Error");
+      toast(axiosError.message);
     }
   };
 
@@ -154,7 +154,7 @@ function UserDashboard() {
         {messages.length > 0 ? (
           messages.map((message, index) => (
             <MessageCard
-              key={String(message._id)}
+              key={index}
               message={message}
               onMessageDelete={handleDeleteMessage}
             />

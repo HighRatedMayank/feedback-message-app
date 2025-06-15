@@ -1,6 +1,5 @@
 'use client'
 
-import React, { useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import dayjs from 'dayjs';
 import { X } from 'lucide-react';
@@ -38,7 +37,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
 
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      toast("Error")
+      toast(axiosError.message)
     } 
   };
 

@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 import dbConnect from "@/lib/dbConnect";
-import { UserModel } from "@/models/User";
+import  UserModel  from "@/models/User";
 import { User } from 'next-auth'
 
 export async function POST(request: Request) {
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
     }
 }
 
-export async function GET(request: Request) {
+export async function GET() {
     // Connect to the database
     await dbConnect();
 
@@ -88,7 +88,7 @@ export async function GET(request: Request) {
         return Response.json(
             {
                 success: true,
-                isAcceptingMessages: foundUser.isAcceptingMessage,
+                isAcceptingMessages: foundUser.isAcceptingMessages,
             },
             { status: 200 }
         );

@@ -13,7 +13,6 @@ import { ApiResponse } from "@/types/ApiResponse"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -69,7 +68,7 @@ export default function Page() {
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setIsSubmitting(true)
     try {
-      const response = await axios.post(`/api/sign-up`, data)
+      await axios.post(`/api/sign-up`, data)
       toast("User is created succesfully")
       router.replace(`/verify/${username}`)
       setIsSubmitting(false)
@@ -79,7 +78,7 @@ export default function Page() {
       const axiosError = error as AxiosError<ApiResponse> 
       let errorMessage = axiosError.response?.data.message
 
-      toast("Signup Failed")
+      toast(errorMessage)
       setIsSubmitting(false)
     }
   }
